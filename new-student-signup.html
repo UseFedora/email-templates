@@ -377,6 +377,12 @@ ul li, ol li {
 											<td width="40%" class="alignleft">E-mail Address</td>
 											<td class="alignright"><a href="mailto:*|STUDENT_EMAIL|*">*|STUDENT_EMAIL|*</a></td>
 										</tr>
+                    *|IF:COUNTRY_NAME|*
+                    <tr>
+                      <td width="40%" class="alignleft">Country</td>
+                      <td class="alignright">*|COUNTRY_NAME|*</td>
+                    </tr>
+                    *|END:IF|*
                     *|IF:STUDENT_SOURCE|*
 										<tr>
 											<td width="40%" class="alignleft stripe">Source</td>
@@ -389,10 +395,12 @@ ul li, ol li {
 											<td class="alignright">*|AFFILIATE_CODE|*</td>
 										</tr>
                     *|END:IF|*
+                    *|IF:STUDENT_INFO_URL|*
                     <tr>
                       <td width="40%" class="alignleft">Full dossier</td>
                       <td class="alignright"><a href="*|STUDENT_INFO_URL|*">*|STUDENT_NAME|*</a></td>
                     </tr>
+                    *|END:IF|*
 									</table>
 								</td>
 							</tr>

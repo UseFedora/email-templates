@@ -444,10 +444,12 @@ ul li, ol li {
 											<td class="alignright stripe">*|COUPON_CODE|*</td>
 										</tr>
                     *|END:IF|*
+                    *|IF:STUDENT_INFO_URL|*
                     <tr>
                       <td width="40%" class="alignleft">Full dossier</td>
                       <td class="alignright"><a href="*|STUDENT_INFO_URL|*">*|STUDENT_NAME|*</a></td>
                     </tr>
+                    *|END:IF|*
 									</table>
 								</td>
 							</tr>
