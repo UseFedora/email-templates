@@ -96,7 +96,7 @@ table.body-wrap {
 }
 
 table.body-wrap .container {
-	
+
 }
 
 
@@ -196,7 +196,7 @@ table.footer-wrap {
 .footer-wrap .container p {
 	font-size: 12px;
 	color: #666;
-	
+
 }
 
 table.footer-wrap a {
@@ -314,7 +314,7 @@ ul li, ol li {
 }
 
 .content-wrapper {
-	padding: 10px; 
+	padding: 10px;
 }
 
 
@@ -347,6 +347,8 @@ ul li, ol li {
         <div class="header" style="color: #fff;">
           *|IF:SCHOOL_LOGO|*
           <img src="*|SCHOOL_LOGO|*">
+          *|ELSE:|*
+          *|SCHOOL_NAME|*
           *|END:IF|*
           <p class="small right faded margin-none">*|DATE:j F Y, H:i T|*</p>
         </div>
@@ -362,8 +364,10 @@ ul li, ol li {
 				<tr>
 					<td class="content-wrapper">
 
+            *|IF:HEADLINE|*
 						<h1 class="headline text-center bold brand-color">*|HEADLINE|*</h1>
-						
+						*|END:IF|*
+
             <br>
 
             *|MESSAGE|*
@@ -374,7 +378,7 @@ ul li, ol li {
 			</table>
 			</div>
 			<!-- /content -->
-			
+
 		</td>
 		<td></td>
 	</tr>
