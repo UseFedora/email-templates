@@ -114,46 +114,6 @@ table.body-wrap .container {
 
 
 /* -------------------------------------
-    DETAILS
-    Styles for the billing table
-------------------------------------- */
-.personal-details {
-  margin: 0px auto;
-  text-align: left;
-  width: 80%;
-}
-.personal-details td {
-  padding: 15px 10px;
-  font-size:100%;
-  line-height: 125%;
-}
-
-.personal-details .detail-items {
-  width: 100%;
-}
-
-.personal-details .detail-items tr:first-child td {
-  border-top: #eee 1px solid;
-}
-.personal-details .detail-items td {
-  border-bottom: #eee 1px solid;
-}
-
-
-.personal-details .detail-items .stripe{
-	background: #fcfcfc;
-}
-
-.personal-details .detail-items .alignleft{
-	font-weight: bold;
-}
-
-.personal-details .detail-items .alignright{
-	border-left: 1px solid #eee;
-	padding-left: 20px;
-}
-
-/* -------------------------------------
     INVOICE
     Styles for the billing table
 ------------------------------------- */
@@ -182,6 +142,45 @@ table.body-wrap .container {
   border-top: 2px solid #333;
   border-bottom: 2px solid #333;
   font-weight: 700;
+}
+
+/* -------------------------------------
+    DETAILS
+    Styles for the billing table
+------------------------------------- */
+.personal-details {
+  margin: 0px auto;
+  text-align: left;
+  width: 80%;
+}
+.personal-details td {
+  padding: 15px 10px;
+  font-size:100%;
+  line-height: 125%;
+}
+
+.personal-details .detail-items {
+  width: 100%;
+}
+
+.personal-details .detail-items tr:first-child td {
+  border-top: #eee 1px solid;
+}
+.personal-details .detail-items td {
+  border-bottom: #eee 1px solid;
+}
+
+.personal-details .detail-items .stripe{
+	background: #fcfcfc;
+}
+
+.personal-details .detail-items .alignleft{
+	font-weight: bold;
+}
+
+.personal-details .detail-items .alignright{
+	border-left: 1px solid #eee;
+	padding-left: 20px;
 }
 
 /* -------------------------------------
@@ -332,7 +331,6 @@ ul li, ol li {
   	font-size: 100% !important;
   }
 }
-
 </style>
 </head>
 
@@ -343,7 +341,7 @@ ul li, ol li {
   <tr>
     <!-- Brand Header -->
       <td class="container" bgcolor="*|SCHOOL_BRAND_PRIMARY|*">
-        <div class="header" style="color: #fff;">
+        <div class="header" style="color: white;">
           *|IF:SCHOOL_LOGO|*
           <img src="*|SCHOOL_LOGO|*">
           *|ELSE:|*
@@ -363,34 +361,9 @@ ul li, ol li {
 				<tr>
 					<td class="content-wrapper">
 
-						<h1 class="headline text-center bold brand-color">Cha-ching!</h1>
-            <h2 class="subline text-center">*|STUDENT_NAME|* just bought a course</h2>
-
-						<table class="invoice">
-							<tr>
-								<td>
-									<table class="invoice-items" cellpadding="0" cellspacing="0">
-										<tr>
-											<td width="75%">*|COURSE_NAME|*</td>
-											<td class="alignright">$ *|COURSE_PRICE|*</td>
-										</tr>
-										*|IF:HAS_DISCOUNT|*
-										<tr>
-											<td width="75%">Discount</td>
-											<td class="alignright">-$ *|DISCOUNT_PRICE|*</td>
-										</tr>
-										*|END:IF|*
-										<tr class="total">
-											<td width="75%">Total</td>
-											<td class="alignright">$ *|TOTAL_PRICE|*</td>
-										</tr>
-									</table>
-								</td>
-							</tr>
-						</table>
-
+						<h1 class="headline text-center bold brand-color">Woohoo, a new student!</h1>
+            <h2 class="subline text-center">*|STUDENT_NAME|* just signed up at *|SCHOOL_NAME|*.</h2><br>
 						<p class="text-center bold">Here's some information about them:</p>
-
 
 						<table class="personal-details">
 							<tr>
@@ -404,25 +377,29 @@ ul li, ol li {
 											<td width="40%" class="alignleft">E-mail Address</td>
 											<td class="alignright"><a href="mailto:*|STUDENT_EMAIL|*">*|STUDENT_EMAIL|*</a></td>
 										</tr>
+                    *|IF:STUDENT_SOURCE|*
 										<tr>
-											<td width="40%" class="alignleft stripe">Sign Up Source</td>
-											<td class="alignright stripe">*|STUDENT_SIGNUP_SOURCE|*</td>
+											<td width="40%" class="alignleft stripe">Source</td>
+											<td class="alignright stripe">*|STUDENT_SOURCE|*</td>
 										</tr>
+                    *|END:IF|*
+                    *|IF:AFFILIATE_CODE|*
 										<tr>
-											<td width="40%" class="alignleft">Last Touch Source</td>
-											<td class="alignright">*|STUDENT_LAST_TOUCH_SOURCE|*</td>
+											<td width="40%" class="alignleft">Affiliate code</td>
+											<td class="alignright">*|AFFILIATE_CODE|*</td>
 										</tr>
-										<tr>
-											<td width="40%" class="alignleft stripe">Coupon Code</td>
-											<td class="alignright stripe">*|STUDENT_COUPON_CODE|*</td>
-										</tr>
+                    *|END:IF|*
+                    <tr>
+                      <td width="40%" class="alignleft">Full dossier</td>
+                      <td class="alignright"><a href="*|STUDENT_INFO_URL|*">*|STUDENT_NAME|*</a></td>
+                    </tr>
 									</table>
 								</td>
 							</tr>
 						</table>
 
             <br>
-            <p class="left">Best wishes,<br>The Fedora Team</p>
+            <p>Best wishes,<br>The Fedora Team</p>
 
 
 					</td>
@@ -447,10 +424,10 @@ ul li, ol li {
 			<div class="content">
 				<table>
 					<tr>
-						<td align="center">
-							<p class="text-center"><img src="https://usefedora.com/images/logos/Fedora_Logo_v2_fixed.png" class="logo"></p>
-							<p>You're receiving this e-mail as an instructor for <a href="*|SCHOOL_URL|*">*|SCHOOL_NAME|*</a>.</p><br>
-						</td>
+            <td align="center">
+              <p class="text-center"><img src="https://usefedora.com/images/logos/Fedora_Logo_v2_fixed.png" class="logo"></p>
+              <p>You're receiving this e-mail as an instructor for <a href="*|SCHOOL_URL|*">*|SCHOOL_NAME|*</a>.</p><br>
+            </td>
 					</tr>
 				</table>
 			</div>

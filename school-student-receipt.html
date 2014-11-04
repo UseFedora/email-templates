@@ -106,6 +106,7 @@ table.body-wrap .container {
 
 .header {
 	display: block;
+	font-weight: bold;
 }
 
 .header img {
@@ -315,18 +316,18 @@ ul li, ol li {
 
 <!-- body -->
 <table class="body-wrap" cellpadding="0" cellspacing="0">
-  <tr>
-    <!-- Brand Header -->
-      <td class="container" bgcolor="*|SCHOOL_BRAND_PRIMARY|*">
-        <div class="header" style="color: #fff;">
-          *|IF:SCHOOL_LOGO|*
-          <img src="*|SCHOOL_LOGO|*">
+	<tr>
+		<!-- Brand Header -->
+			<td class="container" bgcolor="*|SCHOOL_BRAND_PRIMARY|*">
+	      <div class="header" style="color: #fff;">
+	      	*|IF:SCHOOL_LOGO|*
+	      	<img src="*|SCHOOL_LOGO|*">
           *|ELSE:|*
           *|SCHOOL_NAME|*
-          *|END:IF|*
-          <p class="small right faded margin-none">*|DATE:j F Y, H:i T|*</p>
-        </div>
-        <!-- END BRAND SCHOOL CUSTOMIZATION -->
+	      	*|END:IF|*
+	      	<p class="small right faded margin-none">*|DATE:j F Y, H:i T|*</p>
+	      </div>
+	      <!-- END BRAND SCHOOL CUSTOMIZATION -->
      </td>
   </tr>
 
@@ -338,9 +339,39 @@ ul li, ol li {
 				<tr>
 					<td class="content-wrapper">
 
-						<h2 class="headline text-center bold brand-color">Thank you for enrolling into *|COURSE_NAME|*.</h2><br>
+						<h2 class="bold headline text-center brand-color">Thank you for enrolling in *|COURSE_NAME|*.</h2><br>
 
 						<p class="text-center bold">This course can be accessed 24/7 by logging into your account at <a href="https://learn.growhack.com">*|SCHOOL_URL|*</a></p>
+
+						*|IF:PAID|*
+
+            <h3 class="subline text-center">Purchase Receipt</h3>
+
+						<table class="invoice">
+							<tr>
+								<td>
+									<table class="invoice-items" cellpadding="0" cellspacing="0">
+										<tr>
+											<td width="75%">*|COURSE_NAME|*</td>
+											<td class="alignright">*|COURSE_PRICE|*</td>
+										</tr>
+										*|IF:DISCOUNT_AMOUNT|*
+										<tr>
+											<td width="75%">Discount</td>
+											<td class="alignright">-*|DISCOUNT_AMOUNT|*</td>
+										</tr>
+										*|END:IF|*
+										<tr class="total">
+											<td width="75%">Total</td>
+											<td class="alignright">*|TOTAL_PRICE|*</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+
+						*|END:IF|*
+
 
             <br>
             <p>In case you have any questions, contact us at <a href="mailto:*|SCHOOL_EMAIL|*">*|SCHOOL_EMAIL|*</a>.</p>
@@ -370,9 +401,9 @@ ul li, ol li {
 			<div class="content">
 				<table>
 					<tr>
-            <td align="center">
-              <p>You're receiving this e-mail as a student of <a href="*|SCHOOL_URL|*">*|SCHOOL_NAME|*</a>.</p><br>
-            </td>
+						<td align="center">
+							<p>You're receiving this e-mail as a student of <a href="*|SCHOOL_URL|*">*|SCHOOL_NAME|*</a>.</p><br>
+						</td>
 					</tr>
 				</table>
 			</div>

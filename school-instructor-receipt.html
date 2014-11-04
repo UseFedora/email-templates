@@ -139,6 +139,7 @@ table.body-wrap .container {
   border-bottom: #eee 1px solid;
 }
 
+
 .personal-details .detail-items .stripe{
 	background: #fcfcfc;
 }
@@ -151,7 +152,6 @@ table.body-wrap .container {
 	border-left: 1px solid #eee;
 	padding-left: 20px;
 }
-
 
 /* -------------------------------------
     INVOICE
@@ -183,7 +183,6 @@ table.body-wrap .container {
   border-bottom: 2px solid #333;
   font-weight: 700;
 }
-
 
 /* -------------------------------------
 		FOOTER
@@ -364,23 +363,56 @@ ul li, ol li {
 				<tr>
 					<td class="content-wrapper">
 
-						<h1 class="headline text-center bold brand-color">Sweet!</h1>
-            <h2 class="subline text-center">*|STUDENT_NAME|* just enrolled into a free course</h2>
+            *|IF:PAID|*
+
+						<h1 class="headline text-center bold brand-color">Cha-ching!</h1>
+            <h2 class="subline text-center">*|STUDENT_NAME|* just bought a course</h2>
 
 						<table class="invoice">
 							<tr>
 								<td>
 									<table class="invoice-items" cellpadding="0" cellspacing="0">
 										<tr>
-											<td class="text-center">*|COURSE_NAME|*</td>
+											<td width="75%">*|COURSE_NAME|*</td>
+											<td class="alignright">*|COURSE_PRICE|*</td>
 										</tr>
-										<tr><td class="padding-none">&nbsp;</td></tr>
+										*|IF:DISCOUNT_AMOUNT|*
+										<tr>
+											<td width="75%">Discount</td>
+											<td class="alignright">-*|DISCOUNT_AMOUNT|*</td>
+										</tr>
+										*|END:IF|*
+										<tr class="total">
+											<td width="75%">Total</td>
+											<td class="alignright">*|TOTAL_PRICE|*</td>
+										</tr>
 									</table>
 								</td>
 							</tr>
 						</table>
 
+            *|ELSE:|*
+
+            <h1 class="headline text-center bold brand-color">Sweet!</h1>
+            <h2 class="subline text-center">*|STUDENT_NAME|* just enrolled into a free course</h2>
+
+            <table class="invoice">
+              <tr>
+                <td>
+                  <table class="invoice-items" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td class="text-center">*|COURSE_NAME|*</td>
+                    </tr>
+                    <tr><td class="padding-none">&nbsp;</td></tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+
+            *|END:IF|*
+
 						<p class="text-center bold">Here's some information about them:</p>
+
 
 						<table class="personal-details">
 							<tr>
@@ -394,23 +426,32 @@ ul li, ol li {
 											<td width="40%" class="alignleft">E-mail Address</td>
 											<td class="alignright"><a href="mailto:*|STUDENT_EMAIL|*">*|STUDENT_EMAIL|*</a></td>
 										</tr>
+                    *|IF:AFFILIATE_ID|*
 										<tr>
-											<td width="40%" class="alignleft stripe">Sign Up Source</td>
-											<td class="alignright stripe">*|STUDENT_SIGNUP_SOURCE|*</td>
+											<td width="40%" class="alignleft stripe">Affiliate ID</td>
+											<td class="alignright stripe">*|AFFILIATE_ID|*</td>
 										</tr>
+                    *|END:IF|*
+                    *|IF:LAST_TOUCH|*
 										<tr>
 											<td width="40%" class="alignleft">Last Touch Source</td>
-											<td class="alignright">*|STUDENT_LAST_TOUCH_SOURCE|*</td>
+											<td class="alignright">*|LAST_TOUCH|*</td>
 										</tr>
+                    *|END:IF|*
+                    *|IF:COUPON_CODE|*
 										<tr>
 											<td width="40%" class="alignleft stripe">Coupon Code</td>
-											<td class="alignright stripe">*|STUDENT_COUPON_CODE|*</td>
+											<td class="alignright stripe">*|COUPON_CODE|*</td>
 										</tr>
+                    *|END:IF|*
+                    <tr>
+                      <td width="40%" class="alignleft">Full dossier</td>
+                      <td class="alignright"><a href="*|STUDENT_INFO_URL|*">*|STUDENT_NAME|*</a></td>
+                    </tr>
 									</table>
 								</td>
 							</tr>
 						</table>
-
 
             <br>
             <p class="left">Best wishes,<br>The Fedora Team</p>
